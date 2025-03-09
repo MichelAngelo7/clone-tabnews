@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: "lts/hydrogen"
 
+      - run: npm install
+
       - run: npm ci
 
       - run: npm run lint:prettier:check
@@ -25,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
+
+      - run: npm install
 
       - run: npm ci
 
