@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SENSITIVE_FILES="id_rsa id_rsa.pub .env .env.local .env.production .pem .pfx"
 
 # Captura os arquivos no staging
