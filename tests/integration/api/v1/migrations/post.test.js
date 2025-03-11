@@ -5,7 +5,7 @@ beforeAll(async () => {
   await orchestrator.clearDatabase();
 });
 
-describe("POST /api/v1/migrations ", () => {
+describe("POST /api/v1/migrations", () => {
   describe("Anonymous user", () => {
     test("For the first time", async () => {
       const response1 = await fetch("http://localhost:3000/api/v1/migrations", {
