@@ -12,37 +12,54 @@ export default function StatusPage() {
     dedupingInterval: 2000,
   });
 
-  const status = response.data;
+  function Status() {
+    if (!response.isLoading && response.data) {
+      const status = response.data;
+      return (
+        <>
+          <div>
+            <spam>UpdatedAt: {status ? status.updated_at : ""}</spam>
+          </div>
+        </>
+      );
+    }
+  }
+
+  function DatabaseInformation() {
+    if (!response.isLoading && response.data) {
+      const status = response.data;
+      return (
+        <>
+          <div>
+            <div>
+              <spam>
+                Version: {status ? status.dependencies.database.version : ""}
+              </spam>
+            </div>
+            <div>
+              <spam>
+                Max connections:{" "}
+                {status ? status.dependencies.database.max_connections : ""}
+              </spam>
+            </div>
+            <div>
+              <spam>
+                Openned connections:{" "}
+                {status ? status.dependencies.database.opened_connections : ""}
+              </spam>
+            </div>
+          </div>
+        </>
+      );
+    }
+  }
 
   return (
     <>
       <h1>Status</h1>
-      <div>
-        <spam>UpdatedAt: {status ? status.updated_at : ""}</spam>
-      </div>
-
-      <div>
-        <spam>
-          Database:
-          <div>
-            <spam>
-              Version: {status ? status.dependencies.database.version : ""}
-            </spam>
-          </div>
-          <div>
-            <spam>
-              Max connections:{" "}
-              {status ? status.dependencies.database.max_connections : ""}
-            </spam>
-          </div>
-          <div>
-            <spam>
-              Openned connections:{" "}
-              {status ? status.dependencies.database.opened_connections : ""}
-            </spam>
-          </div>
-        </spam>
-      </div>
+      <Status />
+      <h2>Database:</h2>
+      <DatabaseInformation />
     </>
   );
 }
